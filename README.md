@@ -1,5 +1,4 @@
 # Web-Design-Mini-project
-Saffron Table Indian Restaurant Webpage  
 
 
 **Saffron Table** is a modern Indian restaurant website developed as part of my second-semester Web Design course (B.Tech CSE, Semester 2).
