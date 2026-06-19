@@ -1,0 +1,1846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saffron Table | Modern Indian Restaurant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --ink: #1f1914;
+  --muted: #6f6258;
+  --paper: #fffaf3;
+  --linen: #f4eadb;
+  --saffron: #d18a1f;
+  --chile: #a93324;
+  --leaf: #2f6b4f;
+  --charcoal: #15130f;
+  --white: #ffffff;
+  --shadow: 0 20px 50px rgba(31, 25, 20, 0.16);
+}
+
+body.dark {
+  --ink: #f8efe3;
+  --muted: #cdbfaf;
+  --paper: #15130f;
+  --linen: #211b15;
+  --white: #241e18;
+  --shadow: 0 20px 50px rgba(0, 0, 0, 0.34);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.6;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.site-header {
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  padding: 14px clamp(20px, 4vw, 56px);
+  color: var(--white);
+  background: linear-gradient(to bottom, rgba(16, 13, 10, 0.72), rgba(16, 13, 10, 0));
+}
+
+.site-header.scrolled {
+  color: var(--ink);
+  background: rgba(255, 250, 243, 0.94);
+  box-shadow: 0 8px 24px rgba(31, 25, 20, 0.09);
+  backdrop-filter: blur(14px);
+}
+
+body.dark .site-header.scrolled {
+  background: rgba(21, 19, 15, 0.94);
+}
+
+.brand,
+.site-nav,
+.header-actions {
+  display: flex;
+  align-items: center;
+}
+
+.brand {
+  gap: 12px;
+  font-weight: 800;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-family: "Playfair Display", serif;
+}
+
+.site-nav {
+  gap: 10px;
+  font-size: 0.94rem;
+  font-weight: 700;
+  padding: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(15, 13, 10, 0.28);
+  backdrop-filter: blur(12px);
+}
+
+.site-nav a {
+  padding: 9px 14px;
+  border-radius: 999px;
+  border-bottom: 0;
+  transition: background 0.24s ease, color 0.24s ease, transform 0.24s ease;
+}
+
+.site-nav a.active {
+  color: #15130f;
+  background: var(--saffron);
+  transform: translateY(-1px);
+}
+
+.header-actions {
+  gap: 10px;
+}
+
+.nav-toggle {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
+}
+
+.icon-button {
+  min-width: 82px;
+  height: 42px;
+  padding: 0 15px;
+  color: inherit;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 0.86rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.nav-button {
+  padding: 9px 16px !important;
+  color: #fff;
+  background: var(--chile);
+  border-radius: 999px;
+  border-bottom: 0 !important;
+}
+
+.site-nav .nav-button.active {
+  color: #fff;
+  background: var(--chile);
+}
+
+.nav-toggle {
+  display: none;
+  padding: 9px;
+}
+
+.nav-toggle span:not(.sr-only) {
+  display: block;
+  width: 20px;
+  height: 2px;
+  margin: 3px 0;
+  background: currentColor;
+}
+
+.hero {
+  position: relative;
+  min-height: 94vh;
+  display: flex;
+  align-items: flex-end;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.page {
+  display: block;
+}
+
+.page.active {
+  display: block;
+}
+
+.page:not(#page-home) {
+  padding-top: 0;
+}
+
+@keyframes pageFade {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero picture,
+.hero img,
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+}
+
+.hero img {
+  object-fit: cover;
+  transition: transform 8s ease;
+}
+
+.hero:hover img {
+  transform: scale(1.04);
+}
+
+.hero-overlay {
+  z-index: 1;
+  background:
+    linear-gradient(90deg, rgba(12, 10, 8, 0.9), rgba(12, 10, 8, 0.44) 52%, rgba(12, 10, 8, 0.2)),
+    linear-gradient(to top, rgba(12, 10, 8, 0.72), rgba(12, 10, 8, 0.06) 44%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: min(760px, calc(100% - 40px));
+  margin: 0 clamp(20px, 7vw, 96px) 12vh;
+  color: #fff;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: var(--saffron);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1,
+h2 {
+  font-family: "Playfair Display", Georgia, serif;
+  line-height: 0.98;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: clamp(4.1rem, 12vw, 9.4rem);
+}
+
+h2 {
+  margin-bottom: 18px;
+  font-size: clamp(2.15rem, 5vw, 4.5rem);
+}
+
+h3 {
+  margin-bottom: 10px;
+  font-size: 1.05rem;
+}
+
+.hero-copy {
+  max-width: 640px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+}
+
+.hero-actions,
+.menu-tabs,
+.filter-row,
+.order-buttons,
+.slot-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.button,
+.tab,
+.filter-chip,
+.slot-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0 18px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.button.primary {
+  color: #fff;
+  background: var(--chile);
+}
+
+.button.secondary {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.58);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.button.ghost {
+  color: var(--ink);
+  border-color: rgba(31, 25, 20, 0.2);
+  background: var(--white);
+}
+
+.intro,
+.specials-section,
+.menu-section,
+.chef-section,
+.story-section,
+.testimonials-section,
+.visit-section,
+.reserve-section,
+.order-section,
+.events-section,
+.stories-section,
+.loyalty-section,
+.suggestion-section,
+.newsletter-section {
+  padding: clamp(64px, 9vw, 112px) clamp(20px, 5vw, 72px);
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  background: var(--charcoal);
+  color: #fff;
+}
+
+.intro div {
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  padding-top: 22px;
+}
+
+.intro span {
+  color: var(--saffron);
+  font-weight: 900;
+}
+
+.intro h2 {
+  margin: 16px 0 10px;
+  font-family: Inter, sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.25;
+}
+
+.intro p,
+.reserve-section p {
+  color: rgba(255, 255, 255, 0.73);
+}
+
+.section-heading {
+  max-width: 780px;
+  margin-bottom: 34px;
+}
+
+.specials-section {
+  background: var(--linen);
+}
+
+.special-card {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(280px, 1fr);
+  gap: clamp(28px, 5vw, 70px);
+  align-items: center;
+  padding: clamp(24px, 4vw, 42px);
+  color: #fff;
+  background: linear-gradient(135deg, #2f6b4f, #15130f);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.special-card img {
+  height: 360px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.special-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.special-meta span {
+  padding: 7px 11px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  font-weight: 800;
+}
+
+.menu-section {
+  background: var(--paper);
+}
+
+.menu-teasers {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.menu-teaser {
+  position: relative;
+  display: block;
+  min-height: 260px;
+  overflow: hidden;
+  color: #fff;
+  border-radius: 8px;
+  background: #15130f;
+  cursor: pointer;
+  text-align: left;
+}
+
+.menu-teaser img {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.78;
+  transition: transform 0.45s ease, opacity 0.45s ease;
+}
+
+.menu-teaser:hover img {
+  transform: scale(1.08);
+  opacity: 0.58;
+}
+
+.menu-teaser.active {
+  outline: 3px solid var(--saffron);
+  outline-offset: 3px;
+}
+
+.menu-teaser-content {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 20px;
+  background: linear-gradient(to top, rgba(15, 13, 10, 0.88), rgba(15, 13, 10, 0));
+}
+
+.menu-teaser h3 {
+  margin-bottom: 6px;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.6rem;
+}
+
+.menu-explore {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  padding: 7px 11px;
+  color: #15130f;
+  background: var(--saffron);
+  border: 0;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.menu-tabs,
+.filter-row {
+  margin-bottom: 20px;
+}
+
+.tab,
+.filter-chip,
+.slot-button {
+  color: var(--ink);
+  background: transparent;
+  border-color: rgba(31, 25, 20, 0.22);
+}
+
+.tab.active,
+.filter-chip.active,
+.slot-button.active {
+  color: #fff;
+  background: var(--leaf);
+  border-color: var(--leaf);
+}
+
+.menu-grid,
+.testimonial-grid,
+.visit-layout {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.menu-card,
+.testimonial-card,
+.visit-panel,
+.newsletter-card {
+  padding: 24px;
+  background: var(--white);
+  border: 1px solid rgba(31, 25, 20, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 12px 30px rgba(31, 25, 20, 0.06);
+}
+
+.menu-card {
+  min-height: 360px;
+  overflow: hidden;
+  transition: transform 0.24s ease, box-shadow 0.24s ease;
+}
+
+.menu-card img {
+  height: 190px;
+  object-fit: cover;
+  margin: -24px -24px 22px;
+  width: calc(100% + 48px);
+}
+
+.menu-card:hover {
+  transform: translateY(-6px) rotate(0.4deg);
+  box-shadow: var(--shadow);
+}
+
+.menu-card header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.menu-card h3 {
+  max-width: 14ch;
+  font-size: 1.18rem;
+  line-height: 1.25;
+}
+
+.price {
+  color: var(--chile);
+  font-weight: 900;
+}
+
+.menu-card p,
+.story-copy p,
+.chef-copy p,
+.visit-panel p,
+.testimonial-card p,
+.newsletter-card p {
+  color: var(--muted);
+}
+
+.tag {
+  display: inline-flex;
+  margin: 12px 7px 0 0;
+  padding: 5px 9px;
+  color: var(--leaf);
+  background: rgba(47, 107, 79, 0.1);
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 900;
+}
+
+.chef-section,
+.story-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1fr);
+  gap: clamp(28px, 6vw, 78px);
+  align-items: center;
+  background: var(--linen);
+}
+
+.story-section {
+  grid-template-columns: minmax(280px, 0.88fr) minmax(0, 1fr);
+}
+
+.chef-section {
+  background: var(--paper);
+}
+
+.chef-image img,
+.story-image img {
+  height: clamp(380px, 52vw, 620px);
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.story-image {
+  position: relative;
+}
+
+.story-image::after {
+  content: "Since 2018";
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  padding: 9px 13px;
+  color: #15130f;
+  background: var(--saffron);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.story-copy {
+  padding: clamp(22px, 4vw, 38px);
+  background: rgba(255, 255, 255, 0.58);
+  border: 1px solid rgba(31, 25, 20, 0.08);
+  border-radius: 8px;
+}
+
+body.dark .story-copy {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.story-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.story-highlights span {
+  padding: 8px 11px;
+  color: var(--leaf);
+  background: rgba(47, 107, 79, 0.1);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.chef-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.chef-stats span {
+  display: block;
+  color: var(--chile);
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+.gallery-section {
+  background: var(--charcoal);
+  padding: 10px;
+}
+
+.gallery-slider {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.gallery-track {
+  display: flex;
+  transition: transform 0.45s ease;
+}
+
+.gallery-slide {
+  min-width: 100%;
+}
+
+.gallery-slide img {
+  height: clamp(320px, 56vw, 620px);
+  object-fit: cover;
+}
+
+.slider-controls {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.slider-controls button {
+  width: 46px;
+  height: 46px;
+  color: #fff;
+  background: rgba(15, 13, 10, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.testimonials-section {
+  background: var(--paper);
+}
+
+.stars {
+  color: var(--saffron);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.visit-section {
+  background: var(--linen);
+}
+
+.visit-panel {
+  border-left: 4px solid var(--saffron);
+}
+
+.map-frame {
+  margin-top: 22px;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.map-frame iframe {
+  display: block;
+  width: 100%;
+  height: 340px;
+  border: 0;
+}
+
+.order-section {
+  color: #fff;
+  background: linear-gradient(135deg, #15130f, #2f6b4f);
+}
+
+.order-buttons .button.ghost {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.24);
+}
+
+.events-section {
+  background: var(--paper);
+}
+
+.feature-grid,
+.story-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.feature-card,
+.story-card,
+.suggestion-tool {
+  background: var(--white);
+  border: 1px solid rgba(31, 25, 20, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 12px 30px rgba(31, 25, 20, 0.06);
+}
+
+.feature-card {
+  overflow: hidden;
+  padding: 0;
+  transition: transform 0.24s ease, box-shadow 0.24s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow);
+}
+
+.feature-card img {
+  height: 230px;
+  object-fit: cover;
+}
+
+.feature-card-body {
+  padding: 24px;
+}
+
+.feature-card span {
+  display: inline-flex;
+  margin-top: 12px;
+  padding: 7px 11px;
+  color: var(--chile);
+  background: rgba(169, 51, 36, 0.1);
+  border-radius: 999px;
+  font-weight: 900;
+}
+
+.stories-section {
+  background: var(--linen);
+}
+
+.story-card {
+  overflow: hidden;
+}
+
+.story-card img {
+  height: 230px;
+  object-fit: cover;
+}
+
+.story-card div {
+  padding: 22px;
+}
+
+.loyalty-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(28px, 6vw, 78px);
+  align-items: center;
+  color: #fff;
+  background: var(--charcoal);
+}
+
+.loyalty-section p {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.stamp-card {
+  display: grid;
+  grid-template-columns: repeat(5, 74px);
+  gap: 12px;
+}
+
+.stamp {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  color: rgba(255, 255, 255, 0.7);
+  border: 2px dashed rgba(255, 255, 255, 0.28);
+  border-radius: 50%;
+  font-weight: 900;
+}
+
+.stamp.filled {
+  color: #15130f;
+  background: var(--saffron);
+  border-color: var(--saffron);
+}
+
+.suggestion-section {
+  background: var(--paper);
+}
+
+.suggestion-tool {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  padding: 24px;
+}
+
+.mood-button {
+  min-height: 46px;
+  padding: 0 18px;
+  color: var(--ink);
+  border: 1px solid rgba(31, 25, 20, 0.22);
+  border-radius: 999px;
+  background: transparent;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.mood-button.active {
+  color: #fff;
+  background: var(--chile);
+  border-color: var(--chile);
+}
+
+.suggestion-result {
+  width: 100%;
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.reserve-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(320px, 1fr);
+  gap: clamp(26px, 5vw, 70px);
+  align-items: start;
+  color: #fff;
+  background: var(--charcoal);
+}
+
+.reserve-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.reserve-form label {
+  display: grid;
+  gap: 7px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.reserve-form input,
+.reserve-form select {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 13px;
+  color: #1f1914;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.reserve-form .button,
+.form-message,
+.availability {
+  grid-column: 1 / -1;
+}
+
+.form-message,
+.availability {
+  min-height: 24px;
+  margin: 0;
+  color: var(--saffron);
+  font-weight: 800;
+}
+
+.newsletter-section {
+  background: var(--paper);
+}
+
+.newsletter-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+}
+
+.newsletter-card form {
+  display: flex;
+  gap: 10px;
+}
+
+.newsletter-card input {
+  min-height: 48px;
+  min-width: 240px;
+  padding: 0 14px;
+  border: 1px solid rgba(31, 25, 20, 0.2);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.floating-reserve,
+.whatsapp-booking {
+  position: fixed;
+  z-index: 30;
+  right: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 18px;
+  color: #fff;
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+  font-weight: 900;
+}
+
+.floating-reserve {
+  bottom: 18px;
+  background: var(--chile);
+}
+
+.whatsapp-booking {
+  bottom: 76px;
+  background: #168a48;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-out {
+  opacity: 0;
+  transform: translateY(-18px);
+}
+
+.menu-grid {
+  transition: opacity 0.28s ease, transform 0.28s ease;
+}
+
+.menu-grid.changing {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 28px clamp(20px, 5vw, 72px);
+  color: rgba(255, 255, 255, 0.7);
+  background: #0f0d0a;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+@media (max-width: 920px) {
+  .site-nav {
+    position: absolute;
+    top: 72px;
+    left: 20px;
+    right: 20px;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 18px;
+    color: var(--ink);
+    background: var(--paper);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+  }
+
+  .site-nav.open {
+    display: flex;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .intro,
+  .special-card,
+  .menu-teasers,
+  .menu-grid,
+  .chef-section,
+  .story-section,
+  .testimonial-grid,
+  .visit-layout,
+  .reserve-section,
+  .feature-grid,
+  .story-card-grid,
+  .loyalty-section,
+  .newsletter-card {
+    grid-template-columns: 1fr;
+  }
+
+  .reserve-form,
+  .newsletter-card form {
+    grid-template-columns: 1fr;
+  }
+
+  .newsletter-card form {
+    display: grid;
+  }
+}
+
+@media (max-width: 640px) {
+  .site-header {
+    padding: 14px 16px;
+  }
+
+  .brand span:last-child {
+    display: none;
+  }
+
+  .header-actions {
+    gap: 8px;
+  }
+
+  .icon-button {
+    min-width: 68px;
+    height: 38px;
+    padding: 0 10px;
+    font-size: 0.78rem;
+  }
+
+  .nav-toggle {
+    width: 38px;
+    height: 38px;
+  }
+
+  .hero {
+    min-height: 88vh;
+  }
+
+  .hero-content {
+    width: calc(100% - 32px);
+    margin: 0 16px 8vh;
+  }
+
+  h1 {
+    font-size: clamp(3.2rem, 17vw, 5.2rem);
+  }
+
+  .chef-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .stamp-card {
+    grid-template-columns: repeat(5, 1fr);
+    width: 100%;
+  }
+
+  .site-footer {
+    flex-direction: column;
+  }
+
+}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Saffron Table home">
+      <span class="brand-mark">ST</span>
+      <span>Saffron Table</span>
+    </a>
+    <nav id="primary-nav" class="site-nav">
+      <a class="active" href="#home">Home</a>
+      <a href="#menu">Menu</a>
+      <a href="#story">About</a>
+      <a href="#events">Events</a>
+      <a href="#visit">Visit</a>
+      <a class="nav-button" href="#reserve">Reserve</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button theme-toggle" type="button" aria-label="Toggle dark mode">Night</button>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span class="sr-only">Open navigation</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <div class="page active" id="page-home" data-page="home">
+    <section id="home" class="hero fade-in">
+      <picture>
+        <source media="(max-width: 720px)" srcset="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=900&q=80">
+        <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=1800&q=82" alt="A table filled with Indian dishes, naan, curries, and fresh herbs">
+      </picture>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p class="eyebrow">Open daily - 12 PM to 11 PM</p>
+        <h1>Saffron Table</h1>
+        <p class="hero-copy">A warm modern Indian kitchen serving coal-fired breads, slow curries, seasonal vegetables, and bright cocktails in the heart of the city.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#reserve">Book a table</a>
+          <a class="button secondary" href="#menu">View menu</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro fade-in" aria-label="Restaurant highlights">
+      <div>
+        <span>01</span>
+        <h2>Tandoor-led cooking</h2>
+        <p>Fresh naan, smoky kebabs, and roasted vegetables pulled straight from the clay oven.</p>
+      </div>
+      <div>
+        <span>02</span>
+        <h2>Seasonal plates</h2>
+        <p>Local produce folded into classic sauces, pickles, chutneys, and sharing dishes.</p>
+      </div>
+      <div>
+        <span>03</span>
+        <h2>Evening energy</h2>
+        <p>Low lights, polished service, and a bar built around citrus, spice, and herbs.</p>
+      </div>
+    </section>
+
+    <section id="specials" class="specials-section fade-in">
+      <div class="special-card">
+        <div>
+          <p class="eyebrow">Today's Special</p>
+          <h2>Smoked saffron biryani for two.</h2>
+          <p>Layered basmati rice, slow-cooked chicken, fried onions, mint, and saffron dum steam. Served with cucumber raita and mirchi salan.</p>
+          <div class="special-meta">
+            <span>$34</span>
+            <span>Available after 6 PM</span>
+            <span>Chef recommended</span>
+          </div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1633945274405-b6c8069047b0?auto=format&fit=crop&w=900&q=80" alt="A fragrant biryani dish served in a bowl">
+      </div>
+    </section>
+    </div>
+
+    <div class="page" id="page-menu" data-page="menu">
+    <section id="menu" class="menu-section fade-in">
+      <div class="section-heading">
+        <p class="eyebrow">Signature Menu</p>
+        <h2>Explore dishes by craving, meal, and mood.</h2>
+      </div>
+
+      <div class="menu-teasers" aria-label="Featured menu categories">
+        <article class="menu-teaser" data-category="mains">
+          <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=800&q=80" alt="Butter chicken curry">
+          <div class="menu-teaser-content"><h3>Mains</h3><p>Curries, biryani, breads</p><button class="menu-explore" type="button" data-category="mains">Explore</button></div>
+        </article>
+        <article class="menu-teaser active" data-category="snacks">
+          <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80" alt="Samosas with chutney">
+          <div class="menu-teaser-content"><h3>Snacks</h3><p>Chaat, kebabs, small bites</p><button class="menu-explore" type="button" data-category="snacks">Explore</button></div>
+        </article>
+        <article class="menu-teaser" data-category="desserts">
+          <img src="https://images.unsplash.com/photo-1627662168223-7df99068099a?auto=format&fit=crop&w=800&q=80" alt="Indian sweets">
+          <div class="menu-teaser-content"><h3>Desserts</h3><p>Kulfi, sweets, chai pudding</p><button class="menu-explore" type="button" data-category="desserts">Explore</button></div>
+        </article>
+        <article class="menu-teaser" data-category="juices">
+          <img src="https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&fit=crop&w=800&q=80" alt="Fresh colorful juices">
+          <div class="menu-teaser-content"><h3>Juices</h3><p>Mango, lime, rose, mint</p><button class="menu-explore" type="button" data-category="juices">Explore</button></div>
+        </article>
+      </div>
+
+      <div class="menu-tabs" role="tablist" aria-label="Menu categories">
+        <button class="tab active" type="button" data-category="snacks" role="tab" aria-selected="true">Snacks</button>
+        <button class="tab" type="button" data-category="lunch" role="tab" aria-selected="false">Lunch</button>
+        <button class="tab" type="button" data-category="dinner" role="tab" aria-selected="false">Dinner</button>
+        <button class="tab" type="button" data-category="mains" role="tab" aria-selected="false">Mains</button>
+        <button class="tab" type="button" data-category="desserts" role="tab" aria-selected="false">Desserts</button>
+        <button class="tab" type="button" data-category="juices" role="tab" aria-selected="false">Juices</button>
+      </div>
+
+      <div class="filter-row" aria-label="Menu filters">
+        <button class="filter-chip active" type="button" data-filter="all">All</button>
+        <button class="filter-chip" type="button" data-filter="veg">Veg</button>
+        <button class="filter-chip" type="button" data-filter="nonveg">Non-veg</button>
+        <button class="filter-chip" type="button" data-filter="spicy">Spicy</button>
+        <button class="filter-chip" type="button" data-filter="glutenfree">Gluten-free</button>
+      </div>
+
+      <div class="menu-grid" aria-live="polite"></div>
+    </section>
+    </div>
+
+    <div class="page" id="page-about" data-page="about">
+    <section class="chef-section fade-in">
+      <div class="chef-image">
+        <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=900&q=80" alt="Chef plating a dish in a professional kitchen">
+      </div>
+      <div class="chef-copy">
+        <p class="eyebrow">Chef's Story</p>
+        <h2>Chef Mira keeps the fire personal.</h2>
+        <p>Chef Mira Rao grew up around weekend markets, railway snacks, and family dinners that lasted late into the night. Her menu keeps those memories close while adding a clean, modern dining-room finish.</p>
+        <p>Every sauce is built from whole spices, every bread is fired to order, and every plate is designed to bring the table into the conversation.</p>
+        <div class="chef-stats">
+          <p><span>14</span> years cooking</p>
+          <p><span>38</span> spice blends</p>
+          <p><span>1</span> clay tandoor</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="story" class="story-section fade-in">
+      <div class="story-image">
+        <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1000&q=80" alt="A warmly lit restaurant dining room with tables set for dinner">
+      </div>
+      <div class="story-copy">
+        <p class="eyebrow">Our Story</p>
+        <h2>Classic recipes, city-night polish.</h2>
+        <p>Saffron Table began with family recipes from Delhi and Mumbai, then grew into a dining room that balances comfort with occasion. The kitchen keeps the big flavors intact: toasted spices, long-simmered sauces, charred breads, and dishes that arrive ready to pass around.</p>
+        <p>Come for a quick lunch thali, stay for dinner with friends, or settle at the bar for a cardamom old fashioned and crisp pakoras.</p>
+        <div class="story-highlights">
+          <span>Family recipes</span>
+          <span>Clay oven breads</span>
+          <span>Seasonal produce</span>
+          <span>Spice-led cocktails</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-section fade-in" aria-label="Featured dishes">
+      <div class="gallery-slider">
+        <div class="gallery-track">
+          <div class="gallery-slide"><img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=1000&q=80" alt="Butter chicken in a copper bowl"></div>
+          <div class="gallery-slide"><img src="https://images.unsplash.com/photo-1617692855027-33b14f061079?auto=format&fit=crop&w=1000&q=80" alt="Fresh naan bread stacked on a plate"></div>
+          <div class="gallery-slide"><img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=1000&q=80" alt="Golden samosas with chutney"></div>
+        </div>
+        <div class="slider-controls">
+          <button class="prev-slide" type="button" aria-label="Previous gallery image">&lsaquo;</button>
+          <button class="next-slide" type="button" aria-label="Next gallery image">&rsaquo;</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials-section fade-in">
+      <div class="section-heading">
+        <p class="eyebrow">Guest Notes</p>
+        <h2>Warm words from the dining room.</h2>
+      </div>
+      <div class="testimonial-grid">
+        <article class="testimonial-card">
+          <p class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+          <p>"The butter chicken was silky, smoky, and impossible to stop eating. The room has such a relaxed glow."</p>
+          <h3>Aarav M.</h3>
+        </article>
+        <article class="testimonial-card">
+          <p class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+          <p>"Best date-night Indian food we have had in ages. The staff helped us order perfectly."</p>
+          <h3>Nina S.</h3>
+        </article>
+        <article class="testimonial-card">
+          <p class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+          <p>"The mango chili spritz and samosa chaat are worth coming back for on their own."</p>
+          <h3>Dev K.</h3>
+        </article>
+      </div>
+    </section>
+    </div>
+
+    <div class="page" id="page-visit" data-page="visit">
+    <section id="visit" class="visit-section fade-in">
+      <div class="section-heading">
+        <p class="eyebrow">Visit Us</p>
+        <h2>Dinner, drinks, and long conversations.</h2>
+      </div>
+      <div class="visit-layout">
+        <div class="visit-panel">
+          <h3>Hours</h3>
+          <p>Monday to Thursday - 12 PM - 10 PM</p>
+          <p>Friday to Sunday - 12 PM - 11 PM</p>
+        </div>
+        <div class="visit-panel">
+          <h3>Location</h3>
+          <p>42 Market Street</p>
+          <p>Downtown, City Center</p>
+        </div>
+        <div class="visit-panel">
+          <h3>Contact</h3>
+          <p><a href="tel:+15550120444">+1 555 012 0444</a></p>
+          <p><a href="mailto:hello@saffrontable.com">hello@saffrontable.com</a></p>
+        </div>
+      </div>
+      <div class="map-frame">
+        <iframe title="Saffron Table map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Market%20Street%20restaurant&output=embed"></iframe>
+      </div>
+    </section>
+    </div>
+
+    <div class="page" id="page-events" data-page="events">
+    <section class="order-section fade-in">
+      <div class="section-heading">
+        <p class="eyebrow">Order Online</p>
+        <h2>Bring the tandoor home tonight.</h2>
+        <p>Use your favorite delivery app for pickup or doorstep delivery. These demo buttons can be changed to your real restaurant links.</p>
+      </div>
+      <div class="order-buttons">
+        <a class="button ghost" href="https://www.zomato.com/" target="_blank" rel="noreferrer">Order on Zomato</a>
+        <a class="button ghost" href="https://www.swiggy.com/" target="_blank" rel="noreferrer">Order on Swiggy</a>
+        <a class="button ghost" href="https://www.ubereats.com/" target="_blank" rel="noreferrer">Order on Uber Eats</a>
+      </div>
+    </section>
+
+    <section id="events" class="events-section fade-in">
+      <div class="section-heading">
+        <p class="eyebrow">Events & Catering</p>
+        <h2>Private dinners, festive tables, and office feasts.</h2>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card">
+          <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=800&q=80" alt="Friends sharing dinner at a restaurant table">
+          <div class="feature-card-body">
+            <h3>Private Dining</h3>
+            <p>Reserve a warm corner of the dining room for birthdays, anniversaries, and small celebrations.</p>
+            <span>12-28 guests</span>
+          </div>
+        </article>
+        <article class="feature-card">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" alt="Elegant wedding table setting">
+          <div class="feature-card-body">
+            <h3>Wedding Menus</h3>
+            <p>Build a polished thali, buffet, or passed-snack menu around regional favorites and family recipes.</p>
+            <span>Custom menus</span>
+          </div>
+        </article>
+        <article class="feature-card">
+          <img src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=800&q=80" alt="Catering trays prepared for an event">
+          <div class="feature-card-body">
+            <h3>Corporate Catering</h3>
+            <p>Deliverable lunch spreads with biryani, curries, breads, salads, sweets, and zero-proof drinks.</p>
+            <span>24-hour notice</span>
+          </div>
+        </article>
+        <article class="feature-card">
+          <img src="https://images.unsplash.com/photo-1559329007-40df8a9345d8?auto=format&fit=crop&w=800&q=80" alt="Chef preparing food for a special dinner">
+          <div class="feature-card-body">
+            <h3>Chef's Table</h3>
+            <p>Book an intimate tasting night with chef Mira, seasonal courses, paired drinks, and kitchen stories.</p>
+            <span>8 seats</span>
+          </div>
+        </article>
+        <article class="feature-card">
+          <img src="https://images.unsplash.com/photo-1532635241-17e820acc59f?auto=format&fit=crop&w=800&q=80" alt="Festive table with candles and food">
+          <div class="feature-card-body">
+            <h3>Festival Thali Nights</h3>
+            <p>Celebrate Diwali, Holi, Eid, and harvest festivals with limited thalis and sweets.</p>
+            <span>Seasonal</span>
+          </div>
+        </article>
+        <article class="feature-card">
+          <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=800&q=80" alt="Restaurant bar with drinks prepared for guests">
+          <div class="feature-card-body">
+            <h3>Cocktail Workshops</h3>
+            <p>Learn to build spice-led spritzes, nimbu coolers, and cardamom old fashioneds.</p>
+            <span>Groups of 10+</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="stories-section fade-in">
+      <div class="section-heading">
+        <p class="eyebrow">Food Stories</p>
+        <h2>From the kitchen notebook.</h2>
+      </div>
+      <div class="story-card-grid">
+        <article class="story-card">
+          <img src="https://images.unsplash.com/photo-1600628421066-f6bda6a7b976?auto=format&fit=crop&w=700&q=80" alt="Fresh naan being cooked">
+          <div>
+            <p class="eyebrow">Technique</p>
+            <h3>How we fire naan to order</h3>
+            <p>High heat, quick hands, and a final brush of ghee make every basket land hot.</p>
+          </div>
+        </article>
+        <article class="story-card">
+          <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=700&q=80" alt="Colorful spices in bowls">
+          <div>
+            <p class="eyebrow">Spices</p>
+            <h3>The house garam masala</h3>
+            <p>Our blend leans warm and aromatic, with black cardamom, mace, cumin, and clove.</p>
+          </div>
+        </article>
+        <article class="story-card">
+          <img src="https://images.unsplash.com/photo-1627662168223-7df99068099a?auto=format&fit=crop&w=700&q=80" alt="Indian sweets on a plate">
+          <div>
+            <p class="eyebrow">Seasonal</p>
+            <h3>Festival thali specials</h3>
+            <p>Limited menus bring sweets, pickles, breads, and regional dishes together.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="loyalty-section fade-in">
+      <div>
+        <p class="eyebrow">Loyalty</p>
+        <h2>Five visits, dessert is on us.</h2>
+        <p>Collect a digital stamp each time you dine in. On the fifth visit, choose gulab jamun, kulfi, or chai pudding.</p>
+      </div>
+      <div class="stamp-card" aria-label="Digital loyalty stamp card">
+        <span class="stamp filled">1</span>
+        <span class="stamp filled">2</span>
+        <span class="stamp filled">3</span>
+        <span class="stamp">4</span>
+        <span class="stamp">5</span>
+      </div>
+    </section>
+
+    <section class="suggestion-section fade-in">
+      <div class="section-heading">
+        <p class="eyebrow">Menu Mood Finder</p>
+        <h2>Tell us your mood, we will suggest a plate.</h2>
+      </div>
+      <div class="suggestion-tool">
+        <button class="mood-button" type="button" data-mood="comfort">Comforting</button>
+        <button class="mood-button" type="button" data-mood="spicy">Spicy</button>
+        <button class="mood-button" type="button" data-mood="light">Light</button>
+        <button class="mood-button" type="button" data-mood="celebration">Celebration</button>
+        <p class="suggestion-result">Choose a mood to get a dish recommendation.</p>
+      </div>
+    </section>
+    </div>
+
+    <div class="page" id="page-reserve" data-page="reserve">
+    <section id="reserve" class="reserve-section fade-in">
+      <div>
+        <p class="eyebrow">Reservations</p>
+        <h2>Save your seat.</h2>
+        <p>For groups over six, private dining, or event menus, send us a note and we will help shape the evening.</p>
+      </div>
+      <form class="reserve-form">
+        <label>
+          Name
+          <input type="text" name="name" placeholder="Your name" required>
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" placeholder="you@example.com" required>
+        </label>
+        <label>
+          Date
+          <input class="date-input" type="date" name="date" required>
+        </label>
+        <label>
+          Guests
+          <select name="guests" required>
+            <option value="">Select</option>
+            <option>2 guests</option>
+            <option>3 guests</option>
+            <option>4 guests</option>
+            <option>5 guests</option>
+            <option>6+ guests</option>
+          </select>
+        </label>
+        <div class="availability">
+          <p>Choose a date to see demo table slots.</p>
+          <div class="slot-list"></div>
+        </div>
+        <button class="button primary" type="submit">Request table</button>
+        <p class="form-message" role="status"></p>
+      </form>
+    </section>
+
+    <section class="newsletter-section fade-in">
+      <div class="newsletter-card">
+        <div>
+          <p class="eyebrow">Festival Menu</p>
+          <h2>Get the next special menu first.</h2>
+          <p>Join the list for festive thalis, chef dinners, and seasonal drink nights.</p>
+        </div>
+        <form class="newsletter-form">
+          <input type="email" name="newsletter-email" placeholder="Email address" required>
+          <button class="button primary" type="submit">Join list</button>
+        </form>
+      </div>
+    </section>
+    </div>
+  </main>
+
+  <a class="whatsapp-booking" href="https://wa.me/15550120444?text=Hi%20Saffron%20Table%2C%20I%20would%20like%20to%20book%20a%20table." target="_blank" rel="noreferrer">WhatsApp</a>
+  <a class="floating-reserve" href="#reserve">Reserve Table</a>
+
+  <footer class="site-footer">
+    <p>Saffron Table</p>
+    <p>Modern Indian dining - Downtown</p>
+  </footer>
+
+  <script>
+const menuItems = {
+  snacks: [
+    { name: "Crisp Samosa Chaat", price: "$12", image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=700&q=80", description: "Potato samosas, chickpeas, yogurt, tamarind, mint chutney, and sev.", tags: ["veg", "spicy"] },
+    { name: "Tandoori Paneer Skewers", price: "$15", image: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=700&q=80", description: "Charred paneer, bell pepper, onion, kasuri methi, and cilantro-lime chutney.", tags: ["veg", "glutenfree"] },
+    { name: "Koliwada Prawns", price: "$18", image: "https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=700&q=80", description: "Crisp prawns with chili, garlic, curry leaves, and pickled onion.", tags: ["nonveg", "spicy"] },
+    { name: "Papdi Chaat", price: "$10", image: "https://images.unsplash.com/photo-1625398407796-82650a8c135f?auto=format&fit=crop&w=700&q=80", description: "Crunchy wafers, potato, chutneys, yogurt, pomegranate, and herbs.", tags: ["veg"] }
+  ],
+  lunch: [
+    { name: "Lunch Thali", price: "$19", image: "https://images.unsplash.com/photo-1626776876729-bab4369a5a5a?auto=format&fit=crop&w=700&q=80", description: "Dal, seasonal curry, rice, naan, pickle, salad, and dessert bite.", tags: ["veg"] },
+    { name: "Chicken Kathi Roll", price: "$14", image: "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=700&q=80", description: "Roomali wrap with tandoori chicken, onions, chutney, and lime.", tags: ["nonveg", "spicy"] },
+    { name: "Paneer Rice Bowl", price: "$16", image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=700&q=80", description: "Saffron rice, paneer tikka, cucumber, pickles, and mint yogurt.", tags: ["veg", "glutenfree"] }
+  ],
+  dinner: [
+    { name: "Smoked Saffron Biryani", price: "$34", image: "https://images.unsplash.com/photo-1633945274405-b6c8069047b0?auto=format&fit=crop&w=700&q=80", description: "Layered basmati, chicken, fried onion, mint, raita, and salan.", tags: ["nonveg", "spicy"] },
+    { name: "Tandoori Mixed Grill", price: "$36", image: "https://images.unsplash.com/photo-1610057099443-fde8c4d50f91?auto=format&fit=crop&w=700&q=80", description: "Chicken tikka, lamb seekh, prawns, paneer, chutneys, and onions.", tags: ["nonveg", "spicy", "glutenfree"] },
+    { name: "Malai Kofta", price: "$23", image: "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=700&q=80", description: "Paneer dumplings in cashew cream sauce with saffron and cardamom.", tags: ["veg"] }
+  ],
+  mains: [
+    { name: "Butter Chicken", price: "$24", image: "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=700&q=80", description: "Tandoor-roasted chicken in tomato, fenugreek, butter, and warm spice gravy.", tags: ["nonveg", "glutenfree"] },
+    { name: "Lamb Rogan Josh", price: "$29", image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=700&q=80", description: "Slow-braised lamb shoulder with Kashmiri chili, fennel, ginger, and saffron rice.", tags: ["nonveg", "spicy", "glutenfree"] },
+    { name: "Jackfruit Biryani", price: "$22", image: "https://images.unsplash.com/photo-1599043513900-ed6fe01d3833?auto=format&fit=crop&w=700&q=80", description: "Layered basmati, young jackfruit, fried onion, mint, raita, and salan.", tags: ["veg", "spicy"] },
+    { name: "Dal Makhani", price: "$18", image: "https://images.unsplash.com/photo-1617692855027-33b14f061079?auto=format&fit=crop&w=700&q=80", description: "Black lentils simmered overnight with tomato, butter, and cream.", tags: ["veg", "glutenfree"] }
+  ],
+  desserts: [
+    { name: "Pistachio Kulfi", price: "$9", image: "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=700&q=80", description: "Dense frozen kulfi with pistachio, rose, and cardamom.", tags: ["veg", "glutenfree"] },
+    { name: "Gulab Jamun", price: "$8", image: "https://images.unsplash.com/photo-1627662168223-7df99068099a?auto=format&fit=crop&w=700&q=80", description: "Warm milk dumplings soaked in saffron syrup.", tags: ["veg"] },
+    { name: "Masala Chai Pudding", price: "$10", image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=700&q=80", description: "Chai custard, caramel, toasted nuts, and ginger crumble.", tags: ["veg"] }
+  ],
+  juices: [
+    { name: "Mango Chili Spritz", price: "$14", image: "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&fit=crop&w=700&q=80", description: "Mango, lime, sparkling water, chili salt, and mint.", tags: ["spicy", "glutenfree"] },
+    { name: "Nimbu Pani Cooler", price: "$9", image: "https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&w=700&q=80", description: "House lemonade with black salt, roasted cumin, soda, and basil.", tags: ["veg", "glutenfree"] },
+    { name: "Rose Lassi", price: "$8", image: "https://images.unsplash.com/photo-1577805947697-89e18249d767?auto=format&fit=crop&w=700&q=80", description: "Yogurt, rose syrup, cardamom, crushed ice, and pistachio.", tags: ["veg", "glutenfree"] }
+  ]
+};
+
+let currentCategory = "snacks";
+let currentFilter = "all";
+let currentSlide = 0;
+
+const menuGrid = document.querySelector(".menu-grid");
+const tabs = document.querySelectorAll(".tab");
+const menuTeasers = document.querySelectorAll(".menu-teaser");
+const exploreButtons = document.querySelectorAll(".menu-explore");
+const filters = document.querySelectorAll(".filter-chip");
+const navToggle = document.querySelector(".nav-toggle");
+const nav = document.querySelector(".site-nav");
+const navLinks = document.querySelectorAll(".site-nav a[href^='#']");
+const pages = document.querySelectorAll(".page");
+const header = document.querySelector(".site-header");
+const form = document.querySelector(".reserve-form");
+const formMessage = document.querySelector(".form-message");
+const dateInput = document.querySelector(".date-input");
+const slotList = document.querySelector(".slot-list");
+const fadeItems = document.querySelectorAll(".fade-in");
+const themeToggle = document.querySelector(".theme-toggle");
+const track = document.querySelector(".gallery-track");
+const slides = document.querySelectorAll(".gallery-slide");
+const newsletterForm = document.querySelector(".newsletter-form");
+const moodButtons = document.querySelectorAll(".mood-button");
+const suggestionResult = document.querySelector(".suggestion-result");
+
+const sectionToPage = {
+  home: "home",
+  specials: "home",
+  menu: "menu",
+  about: "about",
+  story: "about",
+  events: "events",
+  visit: "visit",
+  reserve: "reserve"
+};
+
+function renderMenu() {
+  const items = menuItems[currentCategory].filter((item) => currentFilter === "all" || item.tags.includes(currentFilter));
+  menuGrid.innerHTML = items.map((item) => `
+    <article class="menu-card fade-in visible">
+      <img src="${item.image}" alt="${item.name}">
+      <header>
+        <h3>${item.name}</h3>
+        <span class="price">${item.price}</span>
+      </header>
+      <p>${item.description}</p>
+      ${item.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}
+    </article>
+  `).join("") || "<p>No dishes match this filter yet.</p>";
+}
+
+function animateMenuChange() {
+  menuGrid.classList.add("changing");
+  setTimeout(() => {
+    renderMenu();
+    menuGrid.classList.remove("changing");
+  }, 240);
+}
+
+function selectMenuCategory(category) {
+  currentCategory = category;
+  tabs.forEach((currentTab) => {
+    const isActive = currentTab.dataset.category === category;
+    currentTab.classList.toggle("active", isActive);
+    currentTab.setAttribute("aria-selected", String(isActive));
+  });
+  menuTeasers.forEach((teaser) => teaser.classList.toggle("active", teaser.dataset.category === category));
+  animateMenuChange();
+  document.querySelector("#menu").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+document.querySelectorAll("a[href^='#']").forEach((link) => {
+  link.addEventListener("click", (event) => {
+    const targetId = link.getAttribute("href").slice(1);
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    event.preventDefault();
+    nav.classList.remove("open");
+    navToggle.setAttribute("aria-expanded", "false");
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    history.replaceState(null, "", `#${targetId}`);
+  });
+});
+
+tabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    selectMenuCategory(tab.dataset.category);
+  });
+});
+
+menuTeasers.forEach((teaser) => {
+  teaser.addEventListener("click", () => {
+    selectMenuCategory(teaser.dataset.category);
+  });
+});
+
+exploreButtons.forEach((button) => {
+  button.addEventListener("click", (event) => {
+    event.stopPropagation();
+    selectMenuCategory(button.dataset.category);
+  });
+});
+
+filters.forEach((filter) => {
+  filter.addEventListener("click", () => {
+    filters.forEach((item) => item.classList.remove("active"));
+    filter.classList.add("active");
+    currentFilter = filter.dataset.filter;
+    animateMenuChange();
+  });
+});
+
+navToggle.addEventListener("click", () => {
+  const isOpen = nav.classList.toggle("open");
+  navToggle.setAttribute("aria-expanded", String(isOpen));
+});
+
+nav.addEventListener("click", (event) => {
+  if (event.target.tagName === "A") {
+    nav.classList.remove("open");
+    navToggle.setAttribute("aria-expanded", "false");
+  }
+});
+
+window.addEventListener("scroll", () => {
+  header.classList.toggle("scrolled", window.scrollY > 20);
+  let currentSection = null;
+  document.querySelectorAll("main section[id]").forEach((section) => {
+    if (section.offsetTop <= window.scrollY + 140) {
+      currentSection = section;
+    }
+  });
+  navLinks.forEach((link) => {
+    link.classList.toggle("active", currentSection && link.getAttribute("href") === `#${currentSection.id}`);
+  });
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      entry.target.classList.remove("fade-out");
+    } else {
+      entry.target.classList.remove("visible");
+      entry.target.classList.add("fade-out");
+    }
+  });
+}, { threshold: 0.12 });
+
+fadeItems.forEach((item) => observer.observe(item));
+
+themeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+  themeToggle.textContent = document.body.classList.contains("dark") ? "Day" : "Night";
+});
+
+function updateSlider() {
+  track.style.transform = `translateX(-${currentSlide * 100}%)`;
+}
+
+document.querySelector(".next-slide").addEventListener("click", () => {
+  currentSlide = (currentSlide + 1) % slides.length;
+  updateSlider();
+});
+
+document.querySelector(".prev-slide").addEventListener("click", () => {
+  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+  updateSlider();
+});
+
+setInterval(() => {
+  currentSlide = (currentSlide + 1) % slides.length;
+  updateSlider();
+}, 5200);
+
+dateInput.addEventListener("change", () => {
+  const slots = ["6:00 PM", "7:15 PM", "8:30 PM", "9:15 PM"];
+  slotList.innerHTML = slots.map((slot, index) => `<button class="slot-button${index === 1 ? " active" : ""}" type="button">${slot}</button>`).join("");
+  slotList.querySelectorAll(".slot-button").forEach((button) => {
+    button.addEventListener("click", () => {
+      slotList.querySelectorAll(".slot-button").forEach((slot) => slot.classList.remove("active"));
+      button.classList.add("active");
+    });
+  });
+});
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const data = new FormData(form);
+  const slot = document.querySelector(".slot-button.active")?.textContent || "our next available slot";
+  formMessage.textContent = `Thanks, ${data.get("name")}. We received your request for ${data.get("date")} at ${slot}.`;
+  form.reset();
+  slotList.innerHTML = "";
+});
+
+newsletterForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  newsletterForm.innerHTML = "<strong>You're on the list. Festival menu coming soon.</strong>";
+});
+
+moodButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const suggestions = {
+      comfort: "Try Butter Chicken with garlic naan and saffron rice.",
+      spicy: "Try Lamb Rogan Josh with a Mango Chili Spritz.",
+      light: "Try Tandoori Paneer Skewers with Nimbu Pani Cooler.",
+      celebration: "Try Smoked Saffron Biryani for two and finish with kulfi."
+    };
+    moodButtons.forEach((item) => item.classList.remove("active"));
+    button.classList.add("active");
+    suggestionResult.textContent = suggestions[button.dataset.mood];
+  });
+});
+
+const initialTarget = window.location.hash.replace("#", "");
+if (initialTarget && document.getElementById(initialTarget)) {
+  setTimeout(() => {
+    document.getElementById(initialTarget)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, 150);
+}
+
+renderMenu();
+  </script>
+</body>
+</html>
